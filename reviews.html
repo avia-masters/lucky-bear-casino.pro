@@ -246,6 +246,35 @@
         .review-card p { color: #d0e4f8; font-size: 15px; }
         .review-card .review-date { display: block; margin-top: 12px; font-size: 12px; color: #5a7a9a; }
 
+        /* ===== ПАГИНАЦИЯ ===== */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        .pagination button {
+            background: rgba(17, 29, 53, 0.6);
+            border: 1px solid rgba(26, 48, 80, 0.4);
+            color: #8aaac8;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+        .pagination button:hover:not(:disabled) { border-color: #4ab8ff; color: #4ab8ff; }
+        .pagination button.active {
+            background: linear-gradient(135deg, #1a7acc, #4ab8ff);
+            color: #fff;
+            border-color: transparent;
+        }
+        .pagination button:disabled { opacity: 0.4; cursor: not-allowed; }
+        .pagination .page-info { color: #5a7a9a; font-size: 14px; margin: 0 12px; }
+
         /* ===== ТАБЛИЦЫ ===== */
         .table-wrap { overflow-x: auto; margin: 16px 0 24px; }
         .table-wrap table {
@@ -459,71 +488,17 @@
                         <h2>Что говорят игроки</h2>
                     </div>
                 </div>
-                <div class="review-grid">
-                    <div class="review-card">
-                        <div class="review-header">
-                            <strong>Алексей М.</strong>
-                            <span class="stars">★★★★★</span>
-                        </div>
-                        <p>Отличное казино! Бонус 777% реально работает, вывел выигрыш за 5 минут. Поддержка отвечает моментально. Играю здесь уже полгода, проблем не было ни разу.</p>
-                        <span class="review-date">15 августа 2026</span>
-                    </div>
-                    <div class="review-card">
-                        <div class="review-header">
-                            <strong>Екатерина С.</strong>
-                            <span class="stars">★★★★★</span>
-                        </div>
-                        <p>Очень нравится интерфейс и скорость вывода. Бонусы щедрые, особенно кэшбэк. Иногда бывают задержки с выводом, но поддержка решает вопросы быстро. Рекомендую!</p>
-                        <span class="review-date">12 августа 2026</span>
-                    </div>
-                    <div class="review-card">
-                        <div class="review-header">
-                            <strong>Дмитрий К.</strong>
-                            <span class="stars">★★★★★</span>
-                        </div>
-                        <p>Пополнил через крипту, выиграл и вывел в тот же день. Lucky Bear — надёжно! Турниры интересные, призовые фонды большие. Уже выиграл 200 000 ₽ в турнире.</p>
-                        <span class="review-date">10 августа 2026</span>
-                    </div>
-                    <div class="review-card">
-                        <div class="review-header">
-                            <strong>Ольга В.</strong>
-                            <span class="stars">★★★★☆</span>
-                        </div>
-                        <p>Хорошее казино, много игр. Особенно нравятся слоты от Pragmatic Play. Бонусы радуют. Единственный минус — иногда долго грузятся некоторые игры на телефоне.</p>
-                        <span class="review-date">8 августа 2026</span>
-                    </div>
-                    <div class="review-card">
-                        <div class="review-header">
-                            <strong>Сергей П.</strong>
-                            <span class="stars">★★★★★</span>
-                        </div>
-                        <p>Лучшее казино для СНГ! Выплаты быстрые, поддержка на русском, бонусы щедрые. VIP-программа даёт хороший кэшбэк. Уже на уровне Платина, всё устраивает.</p>
-                        <span class="review-date">5 августа 2026</span>
-                    </div>
-                    <div class="review-card">
-                        <div class="review-header">
-                            <strong>Анна Т.</strong>
-                            <span class="stars">★★★★★</span>
-                        </div>
-                        <p>Играю через приложение, очень удобно. Всё работает быстро, игры не тормозят. Бонус за регистрацию получила сразу. Вывела первые 50 000 ₽ без проблем.</p>
-                        <span class="review-date">3 августа 2026</span>
-                    </div>
-                    <div class="review-card">
-                        <div class="review-header">
-                            <strong>Игорь Л.</strong>
-                            <span class="stars">★★★★★</span>
-                        </div>
-                        <p>Участвовал в турнире по слотам, занял 3 место и выиграл 2 000 000 ₽. Приз выплатили в течение суток. Впечатления только положительные!</p>
-                        <span class="review-date">1 августа 2026</span>
-                    </div>
-                    <div class="review-card">
-                        <div class="review-header">
-                            <strong>Мария Д.</strong>
-                            <span class="stars">★★★★☆</span>
-                        </div>
-                        <p>Приятно удивлена выбором игр. Есть и слоты, и live-казино, и краш-игры. Для новичков есть демо-режим. Поддержка помогает разобраться. Буду играть дальше!</p>
-                        <span class="review-date">28 июля 2026</span>
-                    </div>
+
+                <!-- Контейнер для отзывов -->
+                <div class="review-grid" id="reviews-container">
+                    <!-- Отзывы будут вставлены через JavaScript -->
+                </div>
+
+                <!-- Пагинация -->
+                <div class="pagination" id="pagination">
+                    <button type="button" id="prev-btn" disabled>← Назад</button>
+                    <span class="page-info" id="page-info">Страница 1 из 5</span>
+                    <button type="button" id="next-btn">Вперёд →</button>
                 </div>
             </div>
         </section>
@@ -653,6 +628,127 @@
         (function() {
             'use strict';
 
+            // ===== ДАННЫЕ ОТЗЫВОВ (40 штук) =====
+            const reviews = [
+                { name: 'Алексей М.', gender: 'm', rating: 5, text: 'Отличное казино! Бонус 777% реально работает, вывел выигрыш за 5 минут. Поддержка отвечает моментально. Играю здесь уже полгода, проблем не было ни разу.', date: '15 января 2026' },
+                { name: 'Екатерина С.', gender: 'f', rating: 5, text: 'Очень нравится интерфейс и скорость вывода. Бонусы щедрые, особенно кэшбэк. Иногда бывают задержки с выводом, но поддержка решает вопросы быстро. Рекомендую!', date: '17 января 2026' },
+                { name: 'Дмитрий К.', gender: 'm', rating: 5, text: 'Пополнил через крипту, выиграл и вывел в тот же день. Lucky Bear — надёжно! Турниры интересные, призовые фонды большие. Уже выиграл 200 000 ₽ в турнире.', date: '19 января 2026' },
+                { name: 'Ольга В.', gender: 'f', rating: 4, text: 'Хорошее казино, много игр. Особенно нравятся слоты от Pragmatic Play. Бонусы радуют. Единственный минус — иногда долго грузятся некоторые игры на телефоне.', date: '21 января 2026' },
+                { name: 'Сергей П.', gender: 'm', rating: 5, text: 'Лучшее казино для СНГ! Выплаты быстрые, поддержка на русском, бонусы щедрые. VIP-программа даёт хороший кэшбэк. Уже на уровне Платина, всё устраивает.', date: '23 января 2026' },
+                { name: 'Анна Т.', gender: 'f', rating: 5, text: 'Играю через приложение, очень удобно. Всё работает быстро, игры не тормозят. Бонус за регистрацию получила сразу. Вывела первые 50 000 ₽ без проблем.', date: '25 января 2026' },
+                { name: 'Игорь Л.', gender: 'm', rating: 5, text: 'Участвовал в турнире по слотам, занял 3 место и выиграл 2 000 000 ₽. Приз выплатили в течение суток. Впечатления только положительные!', date: '27 января 2026' },
+                { name: 'Мария Д.', gender: 'f', rating: 4, text: 'Приятно удивлена выбором игр. Есть и слоты, и live-казино, и краш-игры. Для новичков есть демо-режим. Поддержка помогает разобраться. Буду играть дальше!', date: '29 января 2026' },
+                { name: 'Владимир Н.', gender: 'm', rating: 5, text: 'Начал играть в феврале, уже вывел более 500 000 ₽. Выплаты моментальные, комиссий нет. Крипта принимается без проблем. Всем советую!', date: '2 февраля 2026' },
+                { name: 'Татьяна Р.', gender: 'f', rating: 5, text: 'Обожаю слоты от Hacksaw Gaming. В Lucky Bear их огромный выбор. Бонус 777% помог раскрутиться. Уже несколько раз выводила крупные суммы.', date: '4 февраля 2026' },
+                { name: 'Андрей С.', gender: 'm', rating: 4, text: 'Хорошая платформа, но иногда подвисает на слабом интернете. В остальном всё отлично: бонусы, турниры, поддержка. Рекомендую попробовать.', date: '6 февраля 2026' },
+                { name: 'Наталья К.', gender: 'f', rating: 5, text: 'VIP-программа просто супер! Кэшбэк 20% и персональный менеджер. Мой менеджер всегда на связи, решает любые вопросы. Чувствую себя важным клиентом.', date: '8 февраля 2026' },
+                { name: 'Максим Ж.', gender: 'm', rating: 5, text: 'Выиграл в турнире 5 000 000 ₽! Деньги пришли на карту через 10 минут. Это лучшее казино, в котором я играл. Доверяю только Lucky Bear.', date: '10 февраля 2026' },
+                { name: 'Светлана Б.', gender: 'f', rating: 5, text: 'Играю ради удовольствия, но уже несколько раз выигрывала неплохие суммы. Нравится, что есть ответственная игра и лимиты. Всё честно и прозрачно.', date: '12 февраля 2026' },
+                { name: 'Роман Г.', gender: 'm', rating: 4, text: 'Отличный выбор слотов. Иногда хочется больше live-игр, но и так всё хорошо. Бонусы регулярные, поддержка быстрая. Продолжаю играть.', date: '14 февраля 2026' },
+                { name: 'Юлия М.', gender: 'f', rating: 5, text: 'Скачала приложение, играю с телефона. Всё летает, никаких лагов. Бонус за установку приложения приятно удивил. Вывожу деньги моментально.', date: '16 февраля 2026' },
+                { name: 'Павел Ш.', gender: 'm', rating: 5, text: 'Криптовалютные выплаты — это то, что мне нужно. Никаких банков, никаких задержек. Вывел USDT за 3 минуты. Lucky Bear — топ!', date: '18 февраля 2026' },
+                { name: 'Елена Ф.', gender: 'f', rating: 5, text: 'Мне нравится, что поддержка отвечает на русском и очень быстро. Задавала вопросы по бонусам — всё объяснили. Играю с удовольствием!', date: '20 февраля 2026' },
+                { name: 'Николай В.', gender: 'm', rating: 4, text: 'Хорошее казино, но хотелось бы больше турниров по live-играм. В остальном претензий нет. Выплаты быстрые, бонусы честные.', date: '22 февраля 2026' },
+                { name: 'Ирина Л.', gender: 'f', rating: 5, text: 'Уже год играю в Lucky Bear. За это время вывела более 2 000 000 ₽. Ни одной задержки! Спасибо за честность и отличный сервис.', date: '24 февраля 2026' },
+                { name: 'Артём К.', gender: 'm', rating: 5, text: 'Начал с бонуса 777%, отыграл вейджер и вывел 150 000 ₽. Всё честно, никаких подвохов. Теперь играю только здесь.', date: '26 февраля 2026' },
+                { name: 'Ксения Д.', gender: 'f', rating: 5, text: 'Обожаю краш-игры! Aviamasters 2 и Mines — мои любимые. Выплаты моментальные, интерфейс удобный. Рекомендую всем подругам!', date: '28 февраля 2026' },
+                { name: 'Виктор П.', gender: 'm', rating: 4, text: 'В целом всё устраивает. Иногда бывают технические работы, но это быстро. Бонусы радуют, поддержка помогает. Продолжаю играть.', date: '2 марта 2026' },
+                { name: 'Алина С.', gender: 'f', rating: 5, text: 'Лучшее казино! Выиграла 300 000 ₽ в слоте Anubis Wrath. Деньги вывели за 5 минут. Муж тоже играет здесь. Всем довольны!', date: '4 марта 2026' },
+                { name: 'Георгий Н.', gender: 'm', rating: 5, text: 'VIP-статус Легенда даёт невероятные привилегии. Кэшбэк 25%, личный менеджер, мгновенные выплаты. Чувствую себя королём казино!', date: '6 марта 2026' },
+                { name: 'Валентина Р.', gender: 'f', rating: 5, text: 'Играю ради азарта, но выигрыши приятно удивляют. Уже несколько раз выводила по 100 000 ₽. Поддержка всегда на связи, помогает.', date: '8 марта 2026' },
+                { name: 'Денис А.', gender: 'm', rating: 4, text: 'Хорошая платформа. Нравится, что есть демо-режим для новичков. Бонусы регулярные, турниры интересные. Иногда не хватает акций.', date: '10 марта 2026' },
+                { name: 'Оксана Т.', gender: 'f', rating: 5, text: 'Скачала приложение по совету подруги. Не пожалела! Всё удобно, быстро, безопасно. Вывела первые 80 000 ₽ через крипту за пару минут.', date: '12 марта 2026' },
+                { name: 'Станислав М.', gender: 'm', rating: 5, text: 'Зарегистрировался, получил бонус, выиграл. Всё просто и честно. Поддержка помогла с верификацией. Вывел 250 000 ₽ без проблем.', date: '14 марта 2026' },
+                { name: 'Людмила К.', gender: 'f', rating: 5, text: 'Мне нравится разнообразие игр. Есть и классические слоты, и новинки. Бонусы щедрые, вывод быстрый. Играю каждый день с удовольствием!', date: '16 марта 2026' },
+                { name: 'Константин Б.', gender: 'm', rating: 4, text: 'Всё хорошо, но иногда долго отвечает поддержка ночью. Днём отвечают моментально. Выплаты быстрые, бонусы честные. Рекомендую.', date: '18 марта 2026' },
+                { name: 'Надежда В.', gender: 'f', rating: 5, text: 'Участвовала в турнире, заняла 2 место и выиграла 3 000 000 ₽! Это невероятно! Деньги пришли моментально. Спасибо Lucky Bear!', date: '20 марта 2026' },
+                { name: 'Антон Г.', gender: 'm', rating: 5, text: 'Играю через PWA-версию на iPhone. Работает отлично, как нативное приложение. Бонусы те же, выплаты быстрые. Всем советую!', date: '22 марта 2026' },
+                { name: 'Жанна П.', gender: 'f', rating: 5, text: 'Очень довольна кэшбэком. Каждую неделю возвращают часть проигранных средств. Это приятно. Плюс бонусы на депозит. Играю с удовольствием.', date: '24 марта 2026' },
+                { name: 'Вячеслав Д.', gender: 'm', rating: 5, text: 'Лучшее казино для криптоигроков! USDT принимают без комиссий, вывод моментальный. Уже вывел более 1 000 000 ₽. Всем рекомендую!', date: '26 марта 2026' },
+                { name: 'Галина С.', gender: 'f', rating: 4, text: 'Хорошее казино, но хотелось бы больше бонусов для постоянных игроков. В целом всё устраивает: выплаты, поддержка, выбор игр.', date: '28 марта 2026' },
+                { name: 'Эдуард Н.', gender: 'm', rating: 5, text: 'Выиграл 500 000 ₽ в Crazy Time. Вывел за 10 минут. Никаких вопросов, никаких задержек. Lucky Bear — надёжное казино!', date: '30 марта 2026' },
+                { name: 'Валерия К.', gender: 'f', rating: 5, text: 'Мне нравится, что есть ответственная игра. Можно установить лимиты на депозит и ставки. Это важно. Плюс бонусы и быстрые выплаты.', date: '1 апреля 2026' },
+                { name: 'Михаил Ж.', gender: 'm', rating: 5, text: 'Играю уже полгода. За это время вывел более 3 000 000 ₽. Ни одной проблемы! Поддержка всегда помогает. Лучшее казино!', date: '3 апреля 2026' },
+                { name: 'Диана Р.', gender: 'f', rating: 5, text: 'Спасибо Lucky Bear за отличные бонусы и быстрые выплаты! Выиграла 150 000 ₽ в турнире. Деньги пришли моментально. Буду играть дальше!', date: '5 апреля 2026' }
+            ];
+
+            const reviewsPerPage = 8;
+            let currentPage = 1;
+            const totalPages = Math.ceil(reviews.length / reviewsPerPage);
+
+            const container = document.getElementById('reviews-container');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const pageInfo = document.getElementById('page-info');
+
+            function renderReviews(page) {
+                const start = (page - 1) * reviewsPerPage;
+                const end = start + reviewsPerPage;
+                const pageReviews = reviews.slice(start, end);
+
+                container.innerHTML = pageReviews.map(review => {
+                    const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+                    return `
+                        <div class="review-card">
+                            <div class="review-header">
+                                <strong>${review.name}</strong>
+                                <span class="stars">${stars}</span>
+                            </div>
+                            <p>${review.text}</p>
+                            <span class="review-date">${review.date}</span>
+                        </div>
+                    `;
+                }).join('');
+
+                pageInfo.textContent = `Страница ${page} из ${totalPages}`;
+                prevBtn.disabled = page === 1;
+                nextBtn.disabled = page === totalPages;
+
+                // Обновляем активную кнопку пагинации
+                document.querySelectorAll('.pagination .page-num').forEach(btn => {
+                    btn.classList.toggle('active', parseInt(btn.dataset.page) === page);
+                });
+            }
+
+            function createPaginationButtons() {
+                const pagination = document.getElementById('pagination');
+                // Удаляем старые кнопки, кроме prev, next и page-info
+                pagination.querySelectorAll('.page-num').forEach(btn => btn.remove());
+
+                // Создаём кнопки страниц
+                for (let i = 1; i <= totalPages; i++) {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'page-num';
+                    btn.dataset.page = i;
+                    btn.textContent = i;
+                    btn.addEventListener('click', () => {
+                        currentPage = i;
+                        renderReviews(currentPage);
+                    });
+                    pagination.insertBefore(btn, pageInfo);
+                }
+            }
+
+            prevBtn.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderReviews(currentPage);
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderReviews(currentPage);
+                }
+            });
+
+            // Инициализация
+            createPaginationButtons();
+            renderReviews(1);
+
+            // ===== AGE GATE =====
             const ageGate = document.querySelector('[data-age-gate]');
             const accept = document.querySelector('[data-age-accept]');
             const reject = document.querySelector('[data-age-reject]');
@@ -674,6 +770,7 @@
                 });
             }
 
+            // ===== МЕНЮ =====
             const menuButton = document.querySelector('[data-menu]');
             const nav = document.querySelector('[data-nav]');
 
